@@ -1,0 +1,61 @@
+<%- include('./partials/header.ejs') %>
+  
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5 mt-5">
+            <h2 class="alert alert-success text-center">Add Student</h2>
+            <form method="post">
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type=text class=form-control id=name name=name>
+                </div>
+                <div class="mb-3">
+                    <label for="age" class="form-label">age</label>
+                    <input type=text class=form-control id=age name=age>
+                </div>
+                <div class="mb-3">
+                    <label for="city" class="form-label">city</label>
+                    <input type=text class=form-control id=city name=city>
+                </div>
+                <div class="mb-3">
+                    <button class="btn bg-success text-light p-2" type="submit">Submit</button>
+                </div>
+            </form>
+            </div>
+            <div class="col-sm-6 mt-5" style="margin-left: 50px;">
+                <h2 class="alert alert-danger text-center">List Of Student</h2>
+                <table class="table table-hover">
+                    <thead>
+                        <th scope="col">No</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">city</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </thead>
+                    <tbody>
+                        <% var i=1 %>
+                    <% data.forEach((item)=>{ %>
+                        <tr>
+                        <td><%= i++ %></td>
+                    <td><%= item.name %></td>
+                    <td><%= item.age %></td>
+                    <td><%= item.city %></td>
+                    <td><form action="/clg/edit/<%= item._id %>" method="get"><button class="btn bg-info bg-opacity-75 text-light p-1">Edit</form></button></td>
+                    <td>
+                        <form action="/clg/delete/<%= item.id %>" method="post">
+                            <button class="btn bg-warning  text-light p-1">Delete</button>
+                        </form>
+                    </td>
+                    </tr>
+                   <% })%>
+
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%- include('./partials/footer.ejs') %>
